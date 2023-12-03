@@ -1,7 +1,7 @@
-import { FaTimes } from "react-icons/fa";
+import { FaTimes, FaPenSquare } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
-const Task = ({ task, onDelete, onToggle }) => {
+const Task = ({ task, onDelete, onToggle, onEdit }) => {
   return (
     <div
       className={`task ${task.reminder ? "reminder" : ""}`}
@@ -14,7 +14,13 @@ const Task = ({ task, onDelete, onToggle }) => {
           onClick={() => onDelete(task.id)}
         />
       </h3>
-      <p>{task.day}</p>
+      <p>
+        {task.day}
+        <FaPenSquare
+          style={{ color: "teal", cursor: "pointer" }}
+          onClick={() => onEdit(task)}
+        />
+      </p>
       <p>
         <Link to={`/task/${task.id}`}>View Details</Link>
       </p>

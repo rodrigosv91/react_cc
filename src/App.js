@@ -55,6 +55,10 @@ function App() {
     setTasks(tasks.filter((task) => task.id !== id));
   };
 
+  const editTask = (task) => {
+    console.log("Editando task");
+  };
+
   const toggleReminder = async (id) => {
     const taskToToggle = await fetchTask(id);
     const updatedTask = { ...taskToToggle, reminder: !taskToToggle.reminder };
@@ -93,6 +97,7 @@ function App() {
                     tasks={tasks}
                     onDelete={deleteTask}
                     onToggle={toggleReminder}
+                    onEdit={editTask}
                   />
                 ) : (
                   <p>No tasks to show</p>
