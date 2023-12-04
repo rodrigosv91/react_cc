@@ -55,8 +55,25 @@ function App() {
     setTasks(tasks.filter((task) => task.id !== id));
   };
 
-  const editTask = (task) => {
-    console.log("Editando task");
+  const editTask = async (task) => {
+    const taskId = task.id;
+
+    const taskToUpdate = await fetchTask(taskId);
+    const updatedTask = { ...taskToUpdate, day: task.day };
+
+    const res = await fetch(url + `/${taskId}`, {
+      method: "PUT",
+      headers: { "Content-type": "application/json" },
+      body: JSON.stringify(updatedTask),
+    });
+
+    const data = await res.json();
+
+    setTasks(
+      tasks.map((task) =>
+        task.id === taskId ? { ...task, day: data.day } : task
+      )
+    );
   };
 
   const toggleReminder = async (id) => {
