@@ -16,7 +16,7 @@ const EditTask = ({ task, onEdit, toggleEdit }) => {
   };
 
   return (
-    <form className="add-form" onSubmit={onSubmitFunction}>
+    <form onSubmit={onSubmitFunction}>
       <div className="form-control">
         <input
           defaultValue={task.day}
